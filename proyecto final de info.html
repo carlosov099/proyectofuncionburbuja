@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es"> <!-- Acepta caracteres en español como los acentos y la letra "Ñ" -->
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Ordenamiento por burbuja</title><!--Titulo de la ventana-->
+	<link rel="stylesheet" type="text/css" href="estilos.css"><!-- Se importa el archivo css -->
+</head>
+<body>
+<style>
+h1{
+	color: #641a1a; /* Color del texto del titulo */
+	font-size: 48px; /* Tamaño del Texto*/
+}
+body{
+	background-color: #fae49c; /* Color de fondo del cuerpo(Toda la página)*/
+}
+h2{
+	color: #630435; /* Color del texto del titulo */
+	font-size: 36px; /* Tamaño del Texto*/
+}
+.caja{
+	font-size: 28px; /* Tamaño de letra de un parrafo */
+	font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif; /* Tipo de letra*/
+	margin-left: 10%; /* Espacio entre la izquierda y el parrafo*/
+ 	margin-right: 10%;/* Espacio entre la derecha y el parrafo*/
+  	padding: 15px;/* Espacio entre arriba y abajo del texto el parrafo*/
+ 	border: black 5px solid;/* Margen del bloque*/
+ 	background-color: white;
+ 	color: #000000;
+}
+
+
+button{
+    text-decoration: none; /* Texto subrayado desactivado*/
+    padding: 10px; /* Tamaño entre espacios de arriba y abajo*/
+    font-weight: 600; /* */
+    font-size: 20px; /* Tamaño del texto*/
+    color: #ffffff;  /* Color del texto del botón*/
+    margin-left: 43%; /* Espacio entre la izquierda y el parrafo*/
+ 	 margin-right: 45%;/* Espacio entre la derecha y el parrafo*/
+    background-color: #C20000; /* Color del botón */
+    border-radius: 6px; /* Mide el radio del borde del boton */
+    border: 2px solid #630404;  /* Tamaño del borde y su color tipo solido */
+ }
+</style>
+	<h1>Ordenamiento por Burbuja </h1>
+	<h2> Arreglo: [ <span id="demo"></span> ]</h2>
+
+	<button type="button" onclick="Burbuja()">
+   	Ordenar la lista
+	</button>
+	<p></p>
+
+	<div class="caja">
+		<p id="final"></p>
+	</div>
+	<p></p>
+ 	
+ 	<div class="caja">
+		<p id="finalA"> </p>
+
+	</div>	
+<script>
+	lista = [389, 703, 247, 563, 224, 714, 464, 953, 708, 201, 887, 550, 515, 206, 131];//se declara el arreglo con sus elementos integrados
+	console.log("Lista actual: ",lista); // Mostramos, por consola, la lista desordenada
+	document.getElementById("demo").innerHTML = lista ;
+	function delay(d){ // funcion para esperar, requiere un numero, en este caso segundos
+	    return new Promise(function(resolve){ //Lo que devolvera
+	        setTimeout(resolve,d*1000); // el tiempo de espera sera el numero ingresado por 1000 dando segundos
+	    });
+	}
+
+	
+	async function Burbuja() { // se crea la funcion con un async para leer la funcion de tiempo de espera
+	    var n, i, j, aux, auxi;
+	    n =lista.length; // n es igual a la cantidad de elementos dentro del arreglo
+	    // Algoritmo de burbuja
+	    for (i = 0; i <= n; i++) {
+	        for (j = 0; j <= n; j++) {
+	            if (lista[j] > lista[j + 1]) {
+	                aux = lista[j]; // Se guarda en el auxiliar el valor del numero actual
+	                lista[j] = lista[j + 1]; //al numero actual se le da el valor del numero siguiente
+	                lista[j + 1] = aux; //como se ve antes, el numero actual ya tiene otro valor asi que gracias al auxiliar obtiene valor
+	                document.getElementById("final").innerHTML = lista; // Imprime como se va ordenando actualmente el arreglo
+	                await delay(1); // Tiempo de espera entre cada instruccion de un segundo
+	            }
+	        }
+	    }
+	    await delay(1);
+	    document.getElementById("finalA").innerHTML ="Lista Ordenada: " + lista ;
+   	    console.log(lista); // Mostramos, por consola, la lista ya ordenada
+	}
+</script>
+</body>
+</html>
